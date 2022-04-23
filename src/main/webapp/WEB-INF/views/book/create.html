@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create customer</title>
+</head>
+<body>
+<h1>Create customer</h1>
+<p>
+    <a href="/books">Book list</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/create}" enctype="multipart/form-data" method="post" th:object="${book}">
+    <table>
+        <tr>
+            <td>name:</td>
+            <td><input type="text" name="name"/></td>
+        </tr>
+        <tr>
+            <td>avatar:</td>
+            <td><input type="file" name="avatar"/></td>
+        </tr>
+        <tr>
+            <td>price:</td>
+            <td><input type="text" name="price"/></td>
+        </tr>
+        <tr>
+            <td>author:</td>
+            <td><input type="text" name="author"/></td>
+        </tr>
+        <tr>
+            <td>category:</td>
+            <td>
+                <select th:field="*{category}">
+                    <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Create book"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
